@@ -206,6 +206,12 @@ def get_loaders_eval(dataset, args):
         train_transform, valid_transform = _data_transforms_generic(resize)
         train_data = LMDBDataset(root=args.data, name='ffhq', train=True, transform=train_transform)
         valid_data = LMDBDataset(root=args.data, name='ffhq', train=False, transform=valid_transform)
+    elif dataset.startswith('knnw'):
+        num_classes = 1
+        resize = 128
+        train_transform, valid_transform = _data_transforms_generic(resize)
+        train_data = KNNWDataset(root=args.data, name='ffhq', train=True, transform=train_transform)
+        valid_data = KNNWDataset(root=args.data, name='ffhq', train=False, transform=valid_transform)
     else:
         raise NotImplementedError
 
